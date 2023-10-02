@@ -1,8 +1,9 @@
 <script>
-  import WebComponentElement from './WebComponentElement.svelte';
   export let component;
 </script>
 <svelte:head>
   <script defer src={`${component.url}`}/>
 </svelte:head>
-<WebComponentElement {component} />
+<div data-sveltekit-keepfocus>
+<svelte:element this={component.element}></svelte:element>
+</div>

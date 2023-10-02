@@ -1,28 +1,18 @@
 <script>
 	import { page } from '$app/stores';
-	import WebComponentHead from '$lib/components/dynamic/WebComponentHead.svelte';
-  
+	import WebComponent from '$lib/components/dynamic/WebComponent.svelte';
 	const { dynamic } = $page.params;
-	const routes = [
-		{
-			"name": "A Test Angular WC app",
-			"route": "wc-ui",
-			"url": "/assets/app-wc-ui.js",
-			"element": "app-wc-ui"
-		},
-		{
-			"name": "A news Angular App",
-			"route": "news-wc",
-			"url": "/assets/news-widget.js",
-			"element": "news-widget"
-		}
-	];
-	const route = routes.find(route => route.route === dynamic);
-	console.log('Dynamic Route: ', dynamic, route);
+	const wc = {
+		"name": "A Test Angular WC app",
+		"route": "wc-ui",
+		"url": "/assets/app-wc-ui.js",
+		"element": "app-wc-ui"
+	};
+	const component = wc.route === dynamic? wc : undefined;
   </script>
-  <div>
-	{#if route.element}
-	  <WebComponentHead component={route}/>
+  <div id="dynamic-wc">
+	{#if component}
+	  <WebComponent {component}/>
 	{/if}
   </div>
   
